@@ -5,8 +5,8 @@ using namespace ariel;
 
 TEST_CASE("making players") {
     
-    Player p1("Alice");
-    Player p2("Bob");
+    CHECK_NOTHROW(Player p1("Alice"));
+    CHECK_NOTHROW(Player p2("Bob"));
 }
 
 TEST_CASE("making a game") {
@@ -14,7 +14,7 @@ TEST_CASE("making a game") {
     Player p1("Alice");
     Player p2("Bob");
 
-    Game game(p1,p2);
+    CHECK_NOTHROW(Game game(p1,p2));
 }
 TEST_CASE("game functions") {
     Player p1("Alice");
@@ -48,8 +48,8 @@ TEST_CASE("game functions") {
     SUBCASE("make sure play all works") {
         CHECK_NOTHROW(game.playAll());
         SUBCASE("make sure after play all was called that one player ran out of cards") {
-            bool one_player_out_of_cards = p1.stacksize() == 0 || p2.stacksize() == 0;
-            CHECK(one_player_out_of_cards == true);
+            bool atleast_one_player_out_of_cards = p1.stacksize() == 0 || p2.stacksize() == 0;
+            CHECK(atleast_one_player_out_of_cards == true);
         }
     }
     
